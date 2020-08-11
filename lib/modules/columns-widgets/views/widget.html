@@ -1,0 +1,29 @@
+{% set w = data.widget %}
+
+{% if w.background %}
+  {% set bg = w.background %}
+{% endif %}
+
+{% if w.config %}
+  {% set config = w.config %}
+{% endif %}
+
+{% if config === 'two' or config === 'two-reverse' %}
+  {% set columns = 2 %}
+{% elif  config === 'three' %}
+  {% set columns = 3 %}
+{% else %}
+  {% set columns = 2 %}
+{% endif %}
+
+<div class="{{ bg }} c-columns c-columns--{{ config }}">
+  <div class="o-container c-columns__inner">
+    {% for column in range(0, columns) %}
+      <div class="u-small-dropdowns c-columns__column c-columns__column--{{ column }}">
+        {{ apos.area(w, 'column' + (column + 1), {
+          widgets: apos.helpers.narrowWidgets
+        }) }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

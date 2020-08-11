@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% set piece = data.piece %}
+{% import 'apostrophe-templates:macros/breadcrumbs.html' as breadcrumbs %}
+{% import 'macros/artwork-cards.html' as cards %}
+{% import 'macros/image.html' as image %}
+{% import 'macros/definitionList.html' as dl %}
+
+{% block main %}
+  <main class="o-mt-6 o-container o-container--medium c-artwork-page">
+    {{ breadcrumbs.render(data.page) }}
+    <h1 class="o-color-brand-primary o-title c-artwork-page__title">
+      {{ piece.title }}
+    </h1>
+    <figure class="c-artist-page__image">
+      {% set thumbnail = apos.images.first(piece.thumbnail) %}
+      {{ image.render(thumbnail, { description: true }) }}
+    </figure>
+    <div class="c-meta-columns c-artist-page__content">
+      <div class="c-meta-columns__left c-artist-page__meta">
+        <dl class="c-defintion-list c-artist-page__meta-list">
+          {{ dl.render(piece, [
+            { name: 'lifetime', label: 'año' },
+            { name: 'nationality', label: 'Origen' },
+            { name: 'movement', label: 'Tribu' }
+          ]) }}
+        </dl>
+      </div>
+      <div class="c-meta-columns__right c-artist-page__body">
+        {{ apos.area(piece, 'body', { widgets: apos.helpers.narrowWidgets }) }}
+      </div>
+    </div>
+    <div class="u-small-dropdowns c-artist-page__extra">
+      {{ apos.area(piece, 'extra', { widgets: apos.helpers.baseWidgets }) }}
+    </div>
+  </main>
+{% endblock %}

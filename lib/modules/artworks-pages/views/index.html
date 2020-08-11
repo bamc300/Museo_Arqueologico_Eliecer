@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% import 'macros/masthead.html' as masthead %}
+{% import 'macros/artwork-cards.html' as cards %}
+{% import 'apostrophe-pager:macros.html' as pager %}
+
+{% import 'macros/filters/search.html' as search %}
+{% import 'macros/filters/tag-picker.html' as tags %}
+{% import 'macros/filters/submit.html' as submit %}
+{% import 'macros/filters/multirange.html' as multirange %}
+{% import 'macros/filters/checkboxes.html' as checkboxes %}
+
+{% block main %}
+  {{ masthead.render(data.page) }}
+  <form class="o-container o-container--narrow c-filters c-generic-filters">
+    {{ search.render('Exposicion') }}
+    {{ multirange.render({
+      min: {
+        value: 1400,
+        label: '1400 CE'
+      },
+      max: {
+        value: 2018,
+        label: '2018 CE'
+      }
+    })}}
+    {{ checkboxes.render('Tipo de objeto', 'objectType', data.piecesFilters.objectType) }}
+    {{ checkboxes.render('Ubicacion', 'location', data.piecesFilters.location) }}
+    {{ submit.render() }}
+  </form>
+  <div class="o-container o-container--medium">
+    {% if data.pieces.length %}
+      {{ cards.render(data.pieces) }}
+      <div class="c-pager">
+        {{ pager.render({ page: data.currentPage, total: data.totalPages }, data.url) }}
+      </div>
+    {% else %}
+      <div class="o-body o-empty-state">
+        No hay exposiciones para el criterio
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

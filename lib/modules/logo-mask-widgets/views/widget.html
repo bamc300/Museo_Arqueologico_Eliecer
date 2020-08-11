@@ -1,0 +1,13 @@
+{% import 'macros/svgs.html' as svgs %}
+
+{% if data.widget.image.items %}
+  {% set imageObj = data.widget.image.items[0]._pieces[0] %}
+{% endif %}
+
+<div class="c-logo-mask">
+  {% if imageObj %}
+    {{ svgs.logoMask([apos.attachments.url(apos.images.first(imageObj.item), { size: 'full' })]) }}
+  {% else %}
+    No image set
+  {% endif %}
+</div>

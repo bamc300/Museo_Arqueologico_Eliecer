@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"apostrophe-open-museum.sessions"},{"v":{"$numberInt":"2"},"key":{"expires":{"$numberInt":"1"}},"name":"expires_1","ns":"apostrophe-open-museum.sessions","expireAfterSeconds":{"$numberInt":"0"}}],"uuid":"a9563c1bd71e4c3ca862786c6e58eb80"}

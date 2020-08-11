@@ -1,0 +1,52 @@
+.c-artworks-card__media {
+  position: relative;
+  height: 35rem;
+  margin-bottom: 3rem;
+
+  @media @breakpoint-medium {
+    height: auto;
+  }
+  
+  img {
+    position: absolute;
+    max-height: 35rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: auto;
+    @media @breakpoint-medium {
+      position: relative;
+      max-height: none;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+    }
+  }
+}
+
+.c-artist-card__content { padding: 1.5rem; }
+.c-artworks-card__title { margin-bottom: 0.5rem; }
+.c-artworks-card__artist { margin-bottom: 2rem; }
+
+.o-cards--horizontal {
+  &:hover .c-artworks-card img {
+    outline: none;
+  }
+  .c-artworks-card__media {
+    height: auto;
+    width: 25rem;
+    margin-bottom: none;
+    img {
+      outline: none;
+      position: relative;
+      max-height: none;
+      top: auto;
+      right: auto;
+      bottom: auto;
+      left: auto;
+    }
+  }
+}

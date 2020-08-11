@@ -1,0 +1,39 @@
+{% import "apostrophe-templates:macros/breadcrumbs.html" as breadcrumbs %}
+{% import "apostrophe-templates:macros/image.html" as image %}
+{% import "apostrophe-templates:macros/tags.html" as tags %}
+{% import "apostrophe-templates:macros/searchbar.html" as searchbar %}
+
+{% macro render(page, options={}) %}
+  <div class="o-background-light c-masthead {% if options.media %}c-masthead--has-media{% endif %}{% if options.class %}{{ options.class }}{% endif %}">
+    <div class="o-container c-masthead__inner">
+      <div class="c-masthead__content">
+        {% if options.page %}
+          {{ breadcrumbs.render(options.page) }}
+        {% else %}
+          {{ breadcrumbs.render(page) }}
+        {% endif %}
+        <h1 class="o-title c-masthead__title">{{ options.title or page.title }}</h1>
+        {% if options.type === 'event' %}
+          <p class="o-body c-masthead__description">
+            {{ page.startDate | date('MMMM Do YYYY') }}
+          </p>
+          <p class="o-body c-masthead__description">
+            {{ page._location.title }}
+          </p>
+        {% endif %}
+        {% if options.type === 'event' or options.type === 'article' %}
+          {{ tags.render(page.tags) }}
+        {% endif %}
+        {% if options.search %}
+          {{ searchbar.render(options.search) }}
+        {% endif %}
+      </div>
+      {% if options.media %}
+        <div class="c-masthead__media">
+          {% set thumbnail = apos.images.first(page.thumbnail) %}
+          {{ image.render(thumbnail, {alt: page.title}) }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endmacro %}

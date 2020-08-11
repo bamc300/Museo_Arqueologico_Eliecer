@@ -1,0 +1,16 @@
+{% import 'apostrophe-templates:macros/image.html' as img %}
+{% import 'apostrophe-templates:macros/svgs.html' as svgs %}
+
+{% set w = data.widget %}
+{% set images = apos.images.all(w.images) %}
+
+  <div class="swiper-container c-slideshow__container" data-slideshow>
+    <div class="swiper-wrapper c-slideshow__wrapper">
+      {% for image in images %}
+      {{ image._description or image.title }}
+        <div class="swiper-slide c-slideshow__slide">
+          {{ img.render(image) }}
+        </div>
+      {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+{% import 'navigation.html' as navigation %}
+{% import 'macros/svgs.html' as svgs %}
+
+{% macro render(home, currentPage, images) %}
+  <footer class="o-background-light c-footer">
+    <div class="o-container c-footer__inner">
+      <div class="c-footer__nav">
+        {{ navigation.render(home, currentPage, images) }}
+      </div>
+      <div class="o-body o-body--small c-footer__credit">
+        <a class="c-footer__logo" target="_blank" href="https://es-la.facebook.com/museoarqueologico.eliecersilvacelis/">
+          {{ svgs.apostropheLogo() }}
+        </a>
+        Museo arqueologico <a target="_blank" class="c-footer__apostrophe-link" href="https://es-la.facebook.com/museoarqueologico.eliecersilvacelis/">Eliecer Silva Celis</a> "Templo del sol"
+        <br>
+        <a target="_blank" class="c-footer__apostrophe-link" href="http://www.uptc.edu.co">Universidad Pedagogica y Tecnologica de Colombia</a>
+        <br>
+        Calle 9A No. 6 - 45. Municipio, Sogamoso<a target="_blank" class="c-footer__apostrophe-link" href=""></a>
+        <br>
+        (1) 7703122<a target="_blank" class="c-footer__apostrophe-link" href=""></a>
+        <br>
+        <a target="_blank" class="c-footer__apostrophe-link" href="http://localhost:3000/login">Login Admin</a>
+        <br>
+      </div>
+    </div>
+  </footer>
+{% endmacro %}
